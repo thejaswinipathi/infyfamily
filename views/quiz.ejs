@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+	<head>
+		<title>Infy Family</title>
+		<link rel='shortcut icon' type='image/x-icon' href='/images/favicon.ico'/>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href='/stylesheets/style.css'/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			/*
+			$(document).ready(function(){
+				
+				$("#next").click(function(){
+					//document.write("data");
+					$.get("https://infyfamily.herokuapp.com/quiz/1/0");
+				});
+			});
+			*/
+			var correct=0;
+			function check(answer,option)
+			{
+				if(answer==option)
+				{
+					document.getElementById(answer+"a").style.visibility="visible";
+					document.getElementById("score").value=parseInt(document.getElementById("score").value)+1;
+					correct++;
+
+				}
+				else
+				{
+					document.getElementById(answer+"a").style.visibility="visible";
+					document.getElementById(option+"b").style.visibility="visible";
+				}
+				for(i=0;i<4;i++)
+				{
+					document.getElementById(i).disabled=true;
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <a href="https://infyfamily.herokuapp.com/"><img alt="Infy Family" src="/images/logo.png" width = "40" height="40"></a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        
+		        <li><a href="http://mail.infyfamily.com/customlogin">Mail</a></li>
+
+
+
+				 <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
+				  <!-- Link or button to toggle dropdown -->
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+				    <li><a tabindex="-1" href="#"><strong>Thejaswini   </strong><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+				    <li><a tabindex="-1" href="https://infyfamily.herokuapp.com/quiz">Quiz</a></li>
+				    <li><a tabindex="-1" href="#">Problems</a></li>
+				  </ul>
+				</li>
+
+
+
+
+		      <form class="navbar-form navbar-left" role="search">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </form>
+		  	</ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>	
+		<div id="section">
+			<form method="post" action="/quiz">
+			<p>Your current score is   <input id="score" type="text" name="score" size="4" value=<%=score%> readonly>
+				<br/>
+				Question No <input id="qno" type="text" name="id" size="4" value=<%=parseInt(next)%> readonly>
+				<br/>
+			Guess who the celebrity is ?</p>
+			<a href="https://infyfamily.herokuapp.com/images/<%=image%>.jpg"><img alt="Infy Family" src="/images/<%=image%>.jpg" width = "200" height="200"></a>
+			<div class="list-group">
+				<section>
+						
+						<button id="0" type="button" class="list-group-item" onclick="check(<%=result%>,'0')"><%=optiona%><img id="0a" src="/images/correct.png" width = "20" height="20" style="visibility:hidden"><img  id="0b" src="/images/incorrect.png" width = "20" height="20" style="visibility:hidden"></button>
+						<button  id="1" type="button" class="list-group-item" onclick="check(<%=result%>,'1')"><%=optionb%><img id="1a" src="/images/correct.png" width = "20" height="20" style="visibility:hidden"><img  id="1b" src="/images/incorrect.png" width = "20" height="20" style="visibility:hidden"></button>
+						<button  id="2" type="button" class="list-group-item" onclick="check(<%=result%>,'2')"><%=optionc%><img id="2a" src="/images/correct.png" width = "20" height="20" style="visibility:hidden"><img  id="2b" src="/images/incorrect.png" width = "20" height="20" style="visibility:hidden"></button>
+						<button  id="3" type="button" class="list-group-item" onclick="check(<%=result%>,'3')"><%=optiond%><img id="3a" src="/images/correct.png" width = "20" height="20" style="visibility:hidden"><img  id="3b" src="/images/incorrect.png" width = "20" height="20" style="visibility:hidden"></button>
+
+						<% if(next<8) { %>
+						
+							<input type="submit" id="next" value="Next">
+						
+						<%} else { %>
+							<!--<button id="finish"><a href="https://infyfamily.herokuapp.com/finish/">Finish</a></button>-->
+							<input type="submit" id="next" value="Finish">
+						<% } %>
+					
+
+				</section>
+			  
+			</div>		
+			</form>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,24 @@
+.bar{
+	background-color: #009900;
+}
+.heading{
+	color: #CCFF00;	
+}
+.dropdown{
+	position: relative;
+}
+p{
+	color: green;
+    padding-left: 20px;
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px; 
+}
+#next {
+    float:right;
+}
+#finish {
+    float:right;
+}
