@@ -20,7 +20,7 @@
 				
 				$("#next").click(function(){
 					//document.write("data");
-					$.get("https://infyfamily.herokuapp.com/quiz/1/0");
+					$.get("http://localhost:3000/quiz/1/0");
 				});
 			});
 			*/
@@ -52,7 +52,7 @@
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
-		      <a href="https://infyfamily.herokuapp.com/"><img alt="Infy Family" src="/images/logo.png" width = "40" height="40"></a>
+		      <a href="http://localhost:3000/"><img alt="Infy Family" src="/images/logo.png" width = "40" height="40"></a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -69,8 +69,8 @@
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 
 				    <li><a tabindex="-1" href="#"><strong>Thejaswini   </strong><span class="glyphicon glyphicon-triangle-right"></span></a></li>
-				    <li><a tabindex="-1" href="https://infyfamily.herokuapp.com/quiz">Quiz</a></li>
-				    <li><a tabindex="-1" href="#">Problems</a></li>
+				    <li><a tabindex="-1" href="http://localhost:3000/quiz">Quiz</a></li>
+				    <li><a tabindex="-1" href="http://localhost:3000/problems">Problems</a></li>
 				  </ul>
 				</li>
 
@@ -94,7 +94,7 @@
 				Question No <input id="qno" type="text" name="id" size="4" value=<%=parseInt(next)%> readonly>
 				<br/>
 			Guess who the celebrity is ?</p>
-			<a href="https://infyfamily.herokuapp.com/images/<%=image%>.jpg"><img alt="Infy Family" src="/images/<%=image%>.jpg" width = "200" height="200"></a>
+			<a href="http://localhost:3000/images/<%=image%>.jpg"><img alt="Infy Family" src="/images/<%=image%>.jpg" width = "200" height="200"></a>
 			<div class="list-group">
 				<section>
 						
@@ -108,7 +108,7 @@
 							<input type="submit" id="next" value="Next">
 						
 						<%} else { %>
-							<!--<button id="finish"><a href="https://infyfamily.herokuapp.com/finish/">Finish</a></button>-->
+							<!--<button id="finish"><a href="http://localhost:3000/finish/">Finish</a></button>-->
 							<input type="submit" id="next" value="Finish">
 						<% } %>
 					

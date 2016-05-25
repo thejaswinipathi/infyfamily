@@ -4,7 +4,7 @@
 		<title>Infy Family</title>
 		<link rel='shortcut icon' type='image/x-icon' href='/images/favicon.ico'/>
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href='stylesheets/style.css'/>
+		<link rel="stylesheet" href='/stylesheets/style.css'/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -14,6 +14,50 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+		function validateForm() {
+		    var x = document.forms["subset"]["sets"].value;
+		    var res = x.split(",");
+		    if (x == null || x == "") 
+		    {
+		        alert("Please enter valid input");
+		        return false;
+		    }
+		    else if(res.length>10)
+		    {
+		    	 alert("Please enter valid input");
+		        return false;
+		    }
+		    else
+		    {
+			    	for(var i=0;i<x.length;i++)
+			    	{
+			    		if(x[i]==" ")
+			    		{
+			    			alert("Please enter valid input");
+		        			return false;
+			    		}
+			    		else if((!isNaN(x[i]))||((x[i]==",")))
+			    		{
+			    			
+			    		}
+			    		else
+			    		{
+			    			alert("Please enter valid input");
+		        			return false;
+			    		}
+			    		if(i==x.length-1)
+			    		{
+			    			if(x[i]==',')
+			    			{
+			    				alert("Please enter valid input");
+		        				return false;
+			    			}
+			    		}
+			    	}
+		    }
+		}
+		</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default">
@@ -42,21 +86,28 @@
 				  </ul>
 				</li>
 
-
-
-
 		      <form class="navbar-form navbar-left" role="search">
 		        <div class="form-group">
 		          <input type="text" class="form-control" placeholder="Search">
 		        </div>
 		        <button type="submit" class="btn btn-default">Submit</button>
 		      </form>
+
 		  </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>	
-		<p>
-			Congratulations you've scored     <%=score%>
-		</p>	
+		<ul>
+			<p>
+				Please enter some set of values. Eg(15,20,30,etc.)[Please dont use spaces, and enter lesser than 10 elements]
+				<form method="get" action="/problems/subsetsolution" onsubmit="return validateForm()" name="subset">
+				    <input type="text" name="sets">
+				    <input type="submit">
+				</form>
+			</p>	
+			
+			
+		</ul>
+			
 	</body>
 </html>
