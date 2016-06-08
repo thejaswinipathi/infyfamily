@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp">
 	<head>
 		<title>Infy Family</title>
-		<link rel='shortcut icon' type='image/x-icon' href='/images/favicon.ico'/>
+		
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href='/stylesheets/style.css'/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -53,23 +53,28 @@
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
 		      <a href="http://localhost:3000/"><img alt="Infy Family" src="/images/logo.png" width = "40" height="40"></a>
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+		    		<span class="icon-bar"></span>
+		    		<span class="icon-bar"></span>
+		    		<span class="icon-bar"></span>
+		    	</button>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    <div class="collapse navbar-collapse" id="mainNavBar">
 		      <ul class="nav navbar-nav">
 		        
+		        <li ><a href="http://localhost:3000/" >Home</a></li>
 		        <li><a href="http://mail.infyfamily.com/customlogin">Mail</a></li>
 
 
-
-				 <li class="dropdown">
+				 <li class="dropdown" >
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
 				  <!-- Link or button to toggle dropdown -->
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 
 				    <li><a tabindex="-1" href="#"><strong>Thejaswini   </strong><span class="glyphicon glyphicon-triangle-right"></span></a></li>
-				    <li><a tabindex="-1" href="http://localhost:3000/quiz">Quiz</a></li>
+				    <li class="active"><a tabindex="-1" href="http://localhost:3000/quiz">Quiz</a></li>
 				    <li><a tabindex="-1" href="http://localhost:3000/problems">Problems</a></li>
 				  </ul>
 				</li>
