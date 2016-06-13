@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>Infy Family</title>
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href='stylesheets/style.css'/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			var name;
+			var socket=io.connect('http://localhost:3000');
+			socket.on('connect',function(){
+				name=prompt('Enter your name');
+
+				while(!(name.match('^[A-Za-z ]*$')))
+				{
+					name=prompt('Please check and enter your name');
+				}
+				if(name=='null')
+				{
+					document.getElementById("sendBtn").disabled=true;		
+				}
+				else
+				{
+					document.getElementById("sendBtn").disabled=false;
+					socket.emit('addme',name);
+				}
+				
+			});
+			socket.on('chat',function(username,msg){
+				
+				var p=username+': '+msg;
+				document.getElementById('comment').value+='\n'+p;
+				var objDiv = document.getElementById("comment");
+				objDiv.scrollTop = objDiv.scrollHeight;
+			});
+			socket.on('selfChat',function(username,msg){
+				
+				var p='You'+': '+msg;
+				document.getElementById('comment').value+='\n'+p;
+				var objDiv = document.getElementById("comment");
+				objDiv.scrollTop = objDiv.scrollHeight;
+			});
+			socket.on('firstChat',function(username,msg,users,index){
+				var p=username+': '+msg;
+				document.getElementById('comment').value+=p;
+				var objDiv = document.getElementById("comment");
+				objDiv.scrollTop = objDiv.scrollHeight;
+					var userList='Users Active: ';
+					for(i=0;i<users.length;i++)
+					{
+						if(users[i].length>0)
+						{
+							userList+=users[i]+',';	
+						}
+						
+					}
+					userList=userList.substring(0,userList.length-1);
+					document.getElementById('usersActive').innerHTML=userList;
+			});
+			socket.on('newUser',function(username,msg,users,index){
+				
+				var p=username+': '+msg;
+				document.getElementById('comment').value+='\n'+p;
+				var objDiv = document.getElementById("comment");
+				objDiv.scrollTop = objDiv.scrollHeight;
+				var userList='Users Active: ';
+				for(i=0;i<users.length;i++)
+				{
+					if(users[i].length>0)
+					{
+						userList+=users[i]+',';	
+					}
+					
+				}
+				userList=userList.substring(0,userList.length-1);
+				document.getElementById('usersActive').innerHTML=userList;
+				
+			});
+			window.addEventListener('load',function(){
+				
+				document.getElementById("sendBtn").addEventListener('click',function(){
+					var msg=document.getElementById("inputmsg").value;	
+					document.getElementById("inputmsg").value='';
+					socket.emit('sendmsg',msg);
+				},false);
+				document.getElementById("inputmsg")
+				    .addEventListener("keyup", function(event) {
+				    event.preventDefault();
+				    if (event.keyCode == 13) {
+				        document.getElementById("sendBtn").click();
+				    }
+				});
+			},false);
+		</script>
+	</head>
+	<body>
+		
+		<%include header.html%>
+		
+		<p id="usersActive">
+		</p>	
+		
+	    <div class="form-group" id="chatBody">
+	      <label for="chat">Chat Box:</label>
+	      <textarea class="form-control" rows="20" id="comment" readonly="readonly"></textarea>
+	    </div>
+
+	    <div class="col-xs-10">
+  		<input type="text" class="form-control" id="inputmsg" size="20">
+  		</div>
+
+  		<button type="button" class="btn btn-success" id="sendBtn">Send</button>
+	</body>
+</html>

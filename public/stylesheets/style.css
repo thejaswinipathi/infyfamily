@@ -12,13 +12,25 @@ p{
     padding-left: 20px;
 }
 #section {
-    width:350px;
+    overflow:hidden;  
+    width:250px;
     float:left;
     padding:10px; 
+    margin-bottom: -1px;
+    border: 1px solid #ddd;
 }
 #next {
     float:right;
 }
 #finish {
     float:right;
+}
+#chatBody{
+    overflow:hidden;  
+    width:1100px;
+    float:center;
+    padding:10px; 
+    margin-left: 10px;
+    margin-bottom: -1px;
+    
 }

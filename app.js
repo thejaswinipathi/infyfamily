@@ -1,21 +1,29 @@
 var express = require('express');
+var socket_io    = require( "socket.io" );
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var app = express();
+var template_engine = 'ejs';
+var io           = socket_io();
+app.io           = io;
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var quiz = require('./routes/quiz');
 var finish = require('./routes/finish');
 var problems = require('./routes/problems');
+var chat = require('./routes/chat')(io);
 
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -33,8 +41,18 @@ app.use('/users', users);
 app.use('/quiz', quiz);
 app.use('/finish', finish);
 app.use('/problems', problems);
+app.use('/chat', chat);
 
 // catch 404 and forward to error handler
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  console.log(err);
+  res.render('error', {
+
+    message: err.message,
+    error: err
+  });
+});
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

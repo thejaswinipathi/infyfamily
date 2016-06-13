@@ -1,0 +1,72 @@
+
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		  
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    
+		    <div class="navbar-header">
+		      <a href="http://localhost:3000/"><img alt="Infy Family" src="images/logo.png" width = "40" height="40"></a>
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+		    		<span class="icon-bar"></span>
+		    		<span class="icon-bar"></span>
+		    		<span class="icon-bar"></span>
+		    	</button>
+		    </div>
+			
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    
+		    <div class="collapse navbar-collapse" id="mainNavBar">
+		    	
+		    	
+		        <ul class="nav navbar-nav">
+
+		        		<% if(title=="index") { %>
+						
+							<li class="active"><a href="http://localhost:3000/" >Home</a></li>	
+						
+						<%} else { %>
+							<!--<button id="finish"><a href="http://localhost:3000/finish/">Finish</a></button>-->
+							<li ><a href="http://localhost:3000/" >Home</a></li>
+						<% } %>
+
+		        
+		        <li><a href="http://mail.infyfamily.com/customlogin">Mail</a></li>
+				
+
+		        
+				 <li class="dropdown" >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
+				  <!-- Link or button to toggle dropdown -->
+				 
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+				    <li><a tabindex="-1" href="#"><strong>Thejaswini   </strong><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+				    
+				    <li><a tabindex="-1" href="http://localhost:3000/quiz">Quiz</a></li>
+					
+				    <li><a tabindex="-1" href="http://localhost:3000/problems">Problems</a></li>
+				    <% if(title=="chat") { %>
+				    	<li class="active"><a tabindex="-1" href="http://localhost:3000/chat">Chat</a></li>
+				    <%} else { %>
+				    	<li><a tabindex="-1" href="http://localhost:3000/chat">Chat</a></li>
+				    <% } %>
+				  </ul>
+				</li>
+				
+
+			      <form class="navbar-form navbar-left" role="search">
+			        <div class="form-group">
+			          <input type="text" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Submit</button>
+			      </form>
+			  	
+			  	
+			  </ul>
+			  
+		    </div>
+		    
+		  </div>
+		</nav>	
+		
+		
